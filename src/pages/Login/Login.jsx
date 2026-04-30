@@ -105,7 +105,7 @@ const LoginScreen = () => {
         {/* Registro */}
         <p className="mt-10 text-center text-sm text-gray-400">
           Aun no tienes una cuenta?{' '}
-          <a href="/register" className="font-semibold leading-6 text-[#8fbc6a] hover:text-[#60804F]">
+          <a href="/register" className="font-semibold leading-6 text-[#8fbc6a] hover:text-[#60804F]" onClick={() => navigate('/register')}>
             Registrate ahora
           </a>
         </p>
