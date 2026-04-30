@@ -91,7 +91,7 @@ export default function Checkout() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 
           {/* ── Columna izquierda: Formulario ── */}
-          <div>
+          <div className="order-2 md:order-1">
             <h2 className="text-2xl font-bold tracking-tight text-[#60804F] mb-1">
               Finalizar compra
             </h2>
@@ -219,7 +219,7 @@ export default function Checkout() {
           </div>
 
           {/* ── Columna derecha: Resumen ── */}
-          <div>
+          <div className="order-1 md:order-2">
             <h2 className="text-2xl font-bold tracking-tight text-[#60804F] mb-1">
               Tu pedido
             </h2>
