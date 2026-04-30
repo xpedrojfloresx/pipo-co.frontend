@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+html {
+    scroll-behavior: smooth;
+}
+
+button, a, [role="button"] {
+    cursor: pointer;
+}
+
+[id] {
+    scroll-margin-top: 160px;
+}
+
+@media (max-width: 768px) {
+    [id] {
+        scroll-margin-top: 140px;
+    }
+}
+
+body {
+    background-color: #1a2e1a;
+}
