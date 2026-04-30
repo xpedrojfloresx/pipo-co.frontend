@@ -2,6 +2,8 @@
 
 html {
     scroll-behavior: smooth;
+
+    -webkit-overflow-scrolling: touch;
 }
 
 button, a, [role="button"] {
@@ -14,7 +16,7 @@ button, a, [role="button"] {
 
 @media (max-width: 768px) {
     [id] {
-        scroll-margin-top: 140px;
+        scroll-margin-top: 180px;
     }
 }
 

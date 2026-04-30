@@ -108,7 +108,7 @@ export default function Checkout() {
                   placeholder="Tu nombre"
                   value={form.nombre}
                   onChange={handleChange}
-                  className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition"
+                  className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition text-base sm:text-sm"
                 />
               </div>
 
@@ -120,7 +120,7 @@ export default function Checkout() {
                   placeholder="ejemplo@email.com"
                   value={form.email}
                   onChange={handleChange}
-                  className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition"
+                  className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition text-base sm:text-sm"
                 />
               </div>
 
@@ -132,7 +132,7 @@ export default function Checkout() {
                   placeholder="Calle y número"
                   value={form.direccion}
                   onChange={handleChange}
-                  className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition"
+                  className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition text-base sm:text-sm"
                 />
               </div>
 
@@ -145,7 +145,7 @@ export default function Checkout() {
                     placeholder="Ciudad"
                     value={form.ciudad}
                     onChange={handleChange}
-                    className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition"
+                    className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition text-base sm:text-sm"
                   />
                 </div>
                 <div>
@@ -156,7 +156,7 @@ export default function Checkout() {
                     placeholder="X0000"
                     value={form.cp}
                     onChange={handleChange}
-                    className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition"
+                    className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition text-base sm:text-sm"
                   />
                 </div>
               </div>
@@ -168,7 +168,7 @@ export default function Checkout() {
                   type="text"
                   value={form.provincia}
                   onChange={handleChange}
-                  className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition"
+                  className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition text-base sm:text-sm"
                 />
               </div>
 
