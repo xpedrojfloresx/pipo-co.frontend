@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+
 function InstagramIcon() {
   return (
     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -18,6 +21,20 @@ function WhatsAppIcon() {
 }
 
 export default function Footer() {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const irA = (seccion) => {
+    if (location.pathname === '/') {
+      document.getElementById(seccion)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate('/')
+      setTimeout(() => {
+        document.getElementById(seccion)?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }
+
   return (
     <footer className="bg-[#1a2e1a] text-white">
 
@@ -46,10 +63,10 @@ export default function Footer() {
         <div>
           <h3 className="text-[#8fbc6a] text-xs font-semibold tracking-widest uppercase mb-4">Navegación</h3>
           <ul className="space-y-2 text-sm text-slate-400">
-            <li><a href="#" id="inicio" className="hover:text-white transition-colors">Inicio</a></li>
-            <li><a href="#catalogo" id="catalogo" className="hover:text-white transition-colors">Catálogo</a></li>
-            <li><a href="#ingredientes" id="ingredientes" className="hover:text-white transition-colors">Ingredientes</a></li>
-            <li><a href="#reseñas" id="reseñas" className="hover:text-white transition-colors">Reseñas</a></li>
+            <li><a onClick={() => irA('inicio')} id="inicio" className="hover:text-white transition-colors">Inicio</a></li>
+            <li><a onClick={() => irA('catalogo')} id="catalogo" className="hover:text-white transition-colors">Catálogo</a></li>
+            <li><a onClick={() => irA('ingredientes')} id="ingredientes" className="hover:text-white transition-colors">Ingredientes</a></li>
+            <li><a onClick={() => irA('reseñas')} id="reseñas" className="hover:text-white transition-colors">Reseñas</a></li>
           </ul>
         </div>
 
