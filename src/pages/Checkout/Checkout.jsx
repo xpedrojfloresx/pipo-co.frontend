@@ -53,7 +53,7 @@ export default function Checkout() {
         items,
         total,
         datosEnvio: { ...form, modalidad },
-      })
+      }, { timeout: 15000 })
       navigate('/checkout/confirmacion', {
         replace: true,
         state: { form: { ...form, modalidad }, carrito, total }
@@ -61,6 +61,7 @@ export default function Checkout() {
     } catch (err) {
       console.error(err)
       setError('Hubo un error al procesar el pedido. Intentá de nuevo.')
+    } finally {
       setCargando(false)
     }
   }
