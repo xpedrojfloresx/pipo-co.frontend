@@ -1,16 +1,125 @@
-# React + Vite
+# Pipo & Co — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React storefront for the Pipo & Co pet food e-commerce platform. Built with Vite, Tailwind CSS, and React Router.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Layer | Technology |
+|---|---|
+| Framework | React 19 |
+| Build Tool | Vite 8 |
+| Styling | Tailwind CSS 4 |
+| Routing | React Router DOM 7 |
+| HTTP Client | Axios |
+| UI Components | React Bootstrap, Headless UI |
+| Icons | Lucide React, Hero Icons |
 
-## React Compiler
+## Project Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+Front/
+├── src/
+│   ├── main.jsx              # Entry point — mounts app with BrowserRouter
+│   ├── App.jsx               # Root component — routing, cart state, scroll-to-top
+│   ├── pages/
+│   │   ├── Home/             # Landing page (hero, catalog, testimonials)
+│   │   ├── Login/            # Login form
+│   │   ├── Register/         # Registration form
+│   │   │   └── RegisterConfirmacion/  # Post-registration success screen
+│   │   └── Checkout/         # Order form
+│   │       └── Confirmacion/ # Order confirmation with WhatsApp link
+│   ├── components/
+│   │   ├── BarraNav.jsx      # Sticky navbar with user dropdown and cart icon
+│   │   ├── Catalogo.jsx      # Product grid fetched from API
+│   │   ├── CarritoSidebar.jsx# Sliding cart panel
+│   │   ├── Hero.jsx
+│   │   ├── BannerPromo.jsx
+│   │   ├── Ingredientes.jsx
+│   │   ├── Features.jsx
+│   │   ├── Testimonios.jsx
+│   │   ├── RedesSociales.jsx
+│   │   └── Footer.jsx
+│   └── assets/               # Images and static files
+```
 
-## Expanding the ESLint configuration
+## Routes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Path | Page |
+|---|---|
+| `/` | Home — hero, product catalog, features |
+| `/login` | Login form |
+| `/register` | Registration form |
+| `/registro/confirmacion` | Registration success |
+| `/checkout` | Order form (requires items in cart) |
+| `/checkout/confirmacion` | Order confirmation |
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- Backend API running (see `Back/README.md`)
+
+### Installation
+
+```bash
+git clone <repo-url>
+cd Front
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+VITE_API_URL=http://localhost:8080
+```
+
+### Running
+
+```bash
+npm run dev
+```
+
+App starts on `http://localhost:5173`.
+
+## Available Scripts
+
+| Script | Description |
+|---|---|
+| `npm run dev` | Start Vite dev server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+
+## Key Features
+
+### Shopping Cart
+Cart state lives in `App.jsx` and is passed down via props. Supports adding items, adjusting quantities, and removing products. The cart is displayed in a sliding sidebar (`CarritoSidebar`).
+
+### User Authentication
+Users register and log in via the backend API. The session (user object) is stored in `localStorage` and cleared on logout. A custom event keeps multiple tabs in sync.
+
+### Checkout Flow
+The checkout page collects shipping details (name, email, phone, address) and delivery mode (`envio` for delivery, `retiro` for pickup). On success the backend sends an order confirmation email and the confirmation page shows a WhatsApp contact link.
+
+### Responsive Design
+Mobile-first layout using Tailwind CSS. The navbar collapses to a hamburger menu on small screens.
+
+## Design Tokens
+
+| Token | Value |
+|---|---|
+| Primary green | `#60804F` |
+| Accent green | `#8fbc6a` |
+| Background | Dark neutral |
+
+## Backend Integration
+
+All API calls use Axios with the base URL set from `VITE_API_URL`. Key endpoints consumed:
+
+- `POST /api/usuarios/registro` — register
+- `POST /api/usuarios/login` — login
+- `GET /api/productos` — load product catalog
+- `POST /api/pedidos` — submit order
