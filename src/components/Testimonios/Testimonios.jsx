@@ -1,48 +1,20 @@
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import axios from 'axios'
 
-const testimonios = [
-  {
-    nombre: 'Valentina M.',
-    mascota: 'Luna — Golden Retriever',
-    avatar: 'https://i.pravatar.cc/100?img=47',
-    texto: 'Luna es súper exigente y desde el primer día no paró de pedir más. El pulmón vacuno se convirtió en su favorito para los entrenamientos. Lo mejor: sé exactamente qué le estoy dando.',
-    producto: 'Pulmón Vacuno',
-  },
-  {
-    nombre: 'Martín R.',
-    mascota: 'Bono — Labrador',
-    avatar: 'https://i.pravatar.cc/100?img=12',
-    texto: 'Bono tenía problemas digestivos con otros snacks. Con Pipo&Co los síntomas desaparecieron en una semana. Sin procesos raros, sin aditivos, y el perro los ama.',
-    producto: 'Hígado Vacuno',
-  },
-  {
-    nombre: 'Lucía F.',
-    mascota: 'Mochi — Beagle',
-    avatar: 'https://i.pravatar.cc/100?img=29',
-    texto: 'Las orejas de cerdo son perfectas para cuando Mochi se pone ansioso. Lo mantienen ocupado más de media hora y son completamente naturales. ¡Un hallazgo!',
-    producto: 'Orejas de Cerdo',
-  },
-  {
-    nombre: 'Sebastián O.',
-    mascota: 'Nala — Border Collie',
-    avatar: 'https://i.pravatar.cc/100?img=8',
-    texto: 'Me asesoraron por WhatsApp antes de comprar y eligieron el snack ideal para la edad y el tamaño de Nala. Esa atención personalizada no se consigue en ningún pet shop.',
-    producto: 'Hígado Vacuno',
-  },
-  {
-    nombre: 'Carolina B.',
-    mascota: 'Tofu — Gato Persa',
-    avatar: 'https://i.pravatar.cc/100?img=56',
-    texto: 'No sabía que hacían también para gatos. Tofu es un gato difícil y estas golosinas son las primeras que acepta sin drama. La calidad se nota desde que abrís el paquete.',
-    producto: 'Pulmón Vacuno',
-  },
-]
+const API_URL = import.meta.env.VITE_API_URL
 
 export default function Testimonios() {
+  const [testimonios, setTestimonios] = useState([])
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
   const total = testimonios.length
+
+  useEffect(() => {
+    axios.get(`${API_URL}/api/resenas`)
+      .then(res => setTestimonios(res.data))
+      .catch(() => setTestimonios([]))
+  }, [])
 
   useEffect(() => {
     if (paused) return
@@ -54,6 +26,8 @@ export default function Testimonios() {
 
   const prev = () => setCurrent((c) => (c - 1 + total) % total)
   const next = () => setCurrent((c) => (c + 1) % total)
+
+  if (total === 0) return null
 
   return (
     <section id='reseñas' className="bg-white py-24">

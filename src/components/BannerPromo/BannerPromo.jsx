@@ -6,7 +6,7 @@ export default function BannerPromo() {
     <div className="bg-[#60804F] text-white text-sm py-2.5 px-6 flex items-center justify-center gap-2 relative">
       <Truck className="w-4 h-4 shrink-0" />
       <span className="flex flex-col sm:flex-row sm:gap-1 items-center text-center">
-        <span>Envíos a todo Córdoba -</span>
+        <span>Envíos a toda la ciudad de Córdoba -</span>
         <a
           href="https://wa.me/5493517707999"
           target="_blank"

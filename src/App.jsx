@@ -3,12 +3,15 @@ import BarraNav from './components/BarraNav/BarraNav.jsx'
 import BannerPromo from './components/BannerPromo/BannerPromo.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import CarritoSidebar from './components/CarritoSidebar/CarritoSidebar.jsx'
+import Toast from './components/Toast/Toast.jsx'
 import Home from './pages/Home/Home.jsx'
 import LoginScreen from './pages/Login/Login.jsx'
 import RegisterScreen from './pages/Register/Register.jsx'
 import RegisterConfirmacionScreen from './pages/Register/RegisterConfirmacion.jsx'
 import CheckoutScreen from './pages/Checkout/Checkout.jsx'
 import ConfirmacionScreen from './pages/Checkout/Confirmacion.jsx'
+import AdminScreen from './pages/Admin/Admin.jsx'
+import MiCuentaScreen from './pages/MiCuenta/MiCuenta.jsx'
 import { Routes, Route, useLocation } from "react-router-dom"
 import { useEffect, useState } from 'react'
 
@@ -23,6 +26,7 @@ function ScrollToTop() {
 export default function App() {
   const [carrito, setCarrito] = useState([])
   const [carritoOpen, setCarritoOpen] = useState(false)
+  const [toastVisible, setToastVisible] = useState(false)
 
   const agregarAlCarrito = (producto) => {
     setCarrito(prev => {
@@ -34,6 +38,8 @@ export default function App() {
       }
       return [...prev, { ...producto, cantidad: 1 }]
     })
+    setToastVisible(true)
+    setTimeout(() => setToastVisible(false), 2500)
   }
 
   return (
@@ -50,6 +56,8 @@ export default function App() {
         <Route path="/registro/confirmacion" element={<RegisterConfirmacionScreen />} />
         <Route path="/checkout" element={<CheckoutScreen />} />
         <Route path="/checkout/confirmacion" element={<ConfirmacionScreen />} />
+        <Route path="/admin" element={<AdminScreen />} />
+        <Route path="/mi-cuenta" element={<MiCuentaScreen />} />
       </Routes>
       <Footer />
       <CarritoSidebar
@@ -58,6 +66,7 @@ export default function App() {
         carrito={carrito}
         setCarrito={setCarrito}
       />
+      <Toast visible={toastVisible} />
     </>
   )
 }

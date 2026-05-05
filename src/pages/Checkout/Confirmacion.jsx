@@ -10,6 +10,7 @@ export default function Confirmacion() {
   const form = state?.form
   const carrito = state?.carrito ?? []
   const total = state?.total ?? 0
+  const nroOrden = state?.nroOrden
 
   const generarMensajeWP = () => {
     const productos = carrito
@@ -18,10 +19,12 @@ export default function Confirmacion() {
 
     const modalidadTexto = form?.modalidad === 'retiro' ? 'Retiro en local' : 'Envio a domicilio'
 
-    const mensaje = `Hola Pipo & Co! Acabo de confirmar un pedido.
+    const mensaje = `Hola Pipo & Co! Acabo de realizar un pedido. 
 
+*Orden N°:* #${nroOrden}
 *Nombre:* ${form?.nombre}
 *Email:* ${form?.email}
+*Telefono:* ${form?.telefono}
 *Direccion:* ${form?.direccion}, ${form?.ciudad}, ${form?.provincia} (${form?.cp})
 
 *Productos:*
@@ -52,6 +55,11 @@ Gracias! Quedo a disposicion para coordinar el pedido.`
         </div>
 
         <h2 className="text-2xl font-bold text-[#60804F] text-center mb-2">¡Pedido confirmado!</h2>
+        {nroOrden && (
+          <p className="text-center text-sm font-semibold text-[#60804F] bg-[#60804F]/10 rounded-lg py-2 mb-3">
+            Orden N° <span className="text-lg">#{nroOrden}</span>
+          </p>
+        )}
         <p className="text-[#8fbc6a] text-sm text-center mb-6">
           Guardamos tu pedido. Contactanos por WhatsApp para coordinar el pago y la entrega.
         </p>
@@ -67,6 +75,10 @@ Gracias! Quedo a disposicion para coordinar el pedido.`
               <div className="flex justify-between px-4 py-2.5 text-slate-600">
                 <span className="text-[#8fbc6a] font-medium">Email</span>
                 <span className="truncate ml-4">{form.email}</span>
+              </div>
+              <div className="flex justify-between px-4 py-2.5 text-slate-600">
+                <span className="text-[#8fbc6a] font-medium">Telefono</span>
+                <span className="truncate ml-4">{form.telefono}</span>
               </div>
               <div className="flex justify-between px-4 py-2.5 text-slate-600">
                 <span className="text-[#8fbc6a] font-medium">Dirección</span>

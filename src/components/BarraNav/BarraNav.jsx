@@ -15,6 +15,7 @@ const BarraNav = ({ onAbrirCarrito, carrito }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('usuario')
+    localStorage.removeItem('token')
     setUsuario(null)
     setUserOpen(false)
     setConfirmarLogout(false)
@@ -108,6 +109,11 @@ const BarraNav = ({ onAbrirCarrito, carrito }) => {
                 {usuario ? (
                   <>
                     <p className="px-4 py-3 text-sm text-slate-400 border-b border-slate-100 truncate">Hola, {usuario.nombre}</p>
+                    {usuario.rol === 'admin' && (
+                      <button className="w-full text-left px-4 py-3 text-sm text-[#60804F] font-semibold hover:bg-slate-50 transition-colors" onClick={() => { setUserOpen(false); navigate('/admin') }}>
+                        Panel Admin
+                      </button>
+                    )}
                     <button className="w-full text-left px-4 py-3 text-sm text-[#60804F] font-semibold hover:bg-slate-50 transition-colors" onClick={() => { setUserOpen(false); navigate('/mi-cuenta') }}>
                       Mi cuenta
                     </button>
@@ -165,6 +171,9 @@ const BarraNav = ({ onAbrirCarrito, carrito }) => {
           {usuario ? (
             <>
               <p className="px-2 py-1 text-xs text-slate-400">Hola, {usuario.nombre}</p>
+              {usuario.rol === 'admin' && (
+                <button onClick={() => { setMenuOpen(false); navigate('/admin') }} className="text-[#60804F] hover:text-slate-300 px-4 py-2 rounded-md text-sm font-semibold transition-colors text-left">Panel Admin</button>
+              )}
               <button onClick={() => { setMenuOpen(false); navigate('/mi-cuenta') }} className="text-[#60804F] hover:text-slate-300 px-4 py-2 rounded-md text-sm font-medium transition-colors text-left">Mi cuenta</button>
               <button onClick={() => { setMenuOpen(false); setConfirmarLogout(true) }} className="text-red-500 hover:text-red-400 px-4 py-2 rounded-md text-sm font-medium transition-colors text-left">Cerrar sesión</button>
             </>

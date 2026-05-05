@@ -41,7 +41,12 @@ export default function Catalogo({ onAgregarAlCarrito }) {
                   alt={product.name}
                   className={`w-full h-70 sm:h-100 object-cover transition-transform duration-300 ${imgPositionMap[product.imgPosition] ?? 'object-center'}`}
                 />
-                {product.badge && (
+                {product.agotado && (
+                  <span className="absolute top-3 left-3 bg-rose-800 text-rose-100 text-xs font-semibold px-2 py-1 rounded-full">
+                    Agotado
+                  </span>
+                )}
+                {!product.agotado && product.badge && (
                   <span className="absolute top-3 left-3 bg-[#60804F] text-white text-xs font-semibold px-2 py-1 rounded-full">
                     {product.badge}
                   </span>
@@ -65,9 +70,10 @@ export default function Catalogo({ onAgregarAlCarrito }) {
                 </div>
                 <button
                   onClick={() => onAgregarAlCarrito(product)}
-                  className="mt-auto w-full bg-[#60804F] hover:bg-[#4e6b3f] text-white text-sm font-semibold py-2.5 rounded-lg transition-colors"
+                  disabled={product.agotado}
+                  className="mt-auto w-full text-sm font-semibold py-2.5 rounded-lg transition-colors disabled:cursor-not-allowed bg-[#60804F] hover:bg-[#4e6b3f] disabled:bg-slate-500 disabled:opacity-60 text-white"
                 >
-                  Agregar al carrito
+                  {product.agotado ? 'Sin stock' : 'Agregar al carrito'}
                 </button>
               </div>
             </div>

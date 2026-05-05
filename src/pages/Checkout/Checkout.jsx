@@ -15,6 +15,7 @@ export default function Checkout() {
     nombre: usuario?.nombre ?? '',
     email: usuario?.email ?? '',
     direccion: '',
+    telefono: '',
     ciudad: '',
     provincia: 'Córdoba',
     cp: '',
@@ -32,9 +33,8 @@ export default function Checkout() {
   const handleConfirmar = async (e) => {
     e.preventDefault()
     setError('')
-
-    const { nombre, email, direccion, ciudad, provincia, cp } = form
-    if (!nombre || !email || !direccion || !ciudad || !provincia || !cp) {
+    const { nombre, email, telefono, direccion, ciudad, provincia, cp } = form
+    if (!nombre || !email || !telefono || !direccion || !ciudad || !provincia || !cp) {
       setError('Por favor completá todos los campos.')
       return
     }
@@ -48,7 +48,7 @@ export default function Checkout() {
 
     setCargando(true)
     try {
-      await axios.post(`${API_URL}/api/pedidos`, {
+      const response = await axios.post(`${API_URL}/api/pedidos`, {
         ...(usuario ? { usuarioId: usuario.id } : {}),
         items,
         total,
@@ -56,7 +56,7 @@ export default function Checkout() {
       }, { timeout: 15000 })
       navigate('/checkout/confirmacion', {
         replace: true,
-        state: { form: { ...form, modalidad }, carrito, total }
+        state: { form: { ...form, modalidad }, carrito, total, nroOrden: response.data.nroOrden }
       })
     } catch (err) {
       console.error(err)
@@ -120,6 +120,18 @@ export default function Checkout() {
                   type="email"
                   placeholder="ejemplo@email.com"
                   value={form.email}
+                  onChange={handleChange}
+                  className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition text-base sm:text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-[#8fbc6a] mb-1">Teléfono</label>
+                <input
+                  name="telefono"
+                  type="tel"
+                  placeholder="Número de teléfono"
+                  value={form.telefono}
                   onChange={handleChange}
                   className="block w-full rounded-lg border border-[#60804F]/30 bg-white py-2.5 px-4 text-slate-700 placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#60804F] focus:border-transparent transition text-base sm:text-sm"
                 />

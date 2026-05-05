@@ -21,8 +21,13 @@ const LoginScreen = () => {
       })
       const data = response.data
       localStorage.setItem('usuario', JSON.stringify(data.user))
+      localStorage.setItem('token', data.token)
       window.dispatchEvent(new Event('usuarioActualizado'))
-      navigate('/')
+      if (data.user.rol === 'admin') {
+        navigate('/admin')
+      } else {
+        navigate('/')
+      }
     } catch (error) {
       const mensaje = error.response?.data?.message || 'Error al iniciar sesión'
       alert(mensaje)

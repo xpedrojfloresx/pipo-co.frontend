@@ -11,6 +11,14 @@ function InstagramIcon() {
   )
 }
 
+function TikTokIcon() {
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z" />
+    </svg>
+  )
+}
+
 function WhatsAppIcon() {
   return (
     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -52,6 +60,10 @@ export default function Footer() {
               className="text-[#8fbc6a] hover:text-white transition-colors">
               <InstagramIcon />
             </a>
+            <a href="https://www.tiktok.com/@pipoandco_" target="_blank" rel="noopener noreferrer"
+              className="text-[#8fbc6a] hover:text-white transition-colors">
+              <TikTokIcon />
+            </a>
             <a href="https://wa.me/5493512345678" target="_blank" rel="noopener noreferrer"
               className="text-[#8fbc6a] hover:text-white transition-colors">
               <WhatsAppIcon />
@@ -76,7 +88,7 @@ export default function Footer() {
           <ul className="space-y-3 text-sm text-slate-400">
             <li className="flex items-start gap-2">
               <span className="mt-0.5">📍</span>
-              <span>Córdoba Capital, Argentina</span>
+              <span>Villa Allende y Córdoba Capital, Argentina</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-0.5">📱</span>
