@@ -47,12 +47,12 @@ export default function Footer() {
     <footer className="bg-[#1a2e1a] text-white">
 
       {/* Cuerpo */}
-      <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-[2fr_1fr_1.5fr_1.5fr] gap-y-10 gap-x-8">
 
         {/* Marca */}
         <div>
           <img src="/Logo-LetrasVerdes.png" alt="Pipo&Co" className="h-10 mb-4" />
-          <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+          <p className="text-slate-400 text-sm leading-relaxed">
             Snacks naturales, hechos a mano en Córdoba. Sin conservantes, sin aditivos. Solo lo mejor para tu mascota.
           </p>
           <div className="flex gap-3 mt-5">
@@ -75,10 +75,42 @@ export default function Footer() {
         <div>
           <h3 className="text-[#8fbc6a] text-xs font-semibold tracking-widest uppercase mb-4">Navegación</h3>
           <ul className="space-y-2 text-sm text-slate-400">
-            <li><a onClick={() => irA('inicio')} id="inicio" className="hover:text-white transition-colors">Inicio</a></li>
-            <li><a onClick={() => irA('catalogo')} id="catalogo" className="hover:text-white transition-colors">Catálogo</a></li>
-            <li><a onClick={() => irA('ingredientes')} id="ingredientes" className="hover:text-white transition-colors">Ingredientes</a></li>
-            <li><a onClick={() => irA('reseñas')} id="reseñas" className="hover:text-white transition-colors">Reseñas</a></li>
+            <li><a onClick={() => irA('inicio')} className="cursor-pointer hover:text-white transition-colors">Inicio</a></li>
+            <li><a onClick={() => irA('catalogo')} className="cursor-pointer hover:text-white transition-colors">Catálogo</a></li>
+            <li><a onClick={() => irA('ingredientes')} className="cursor-pointer hover:text-white transition-colors">Ingredientes</a></li>
+            <li><a onClick={() => irA('reseñas')} className="cursor-pointer hover:text-white transition-colors">Reseñas</a></li>
+          </ul>
+        </div>
+
+        {/* FAQs */}
+        <div>
+          <h3 className="text-[#8fbc6a] text-xs font-semibold tracking-widest uppercase mb-4">Preguntas frecuentes</h3>
+          <ul className="space-y-2 text-sm text-slate-400">
+            <li>
+              <a onClick={() => navigate('/faqs#envios')} className="cursor-pointer hover:text-white transition-colors">
+                ¿Cómo son los envíos?
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate('/faqs#ingredientes')} className="cursor-pointer hover:text-white transition-colors">
+                ¿Qué ingredientes usan?
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate('/faqs#conservacion')} className="cursor-pointer hover:text-white transition-colors">
+                ¿Cómo conservo los snacks?
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate('/faqs#pagos')} className="cursor-pointer hover:text-white transition-colors">
+                ¿Qué medios de pago aceptan?
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate('/faqs')} className="cursor-pointer text-[#8fbc6a] hover:text-white transition-colors font-medium">
+                Ver todas →
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -110,8 +142,9 @@ export default function Footer() {
       </div>
 
       {/* Barra inferior */}
-      <div className="border-t border-[#60804F]/30 py-5 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} Pipo&Co — Todos los derechos reservados
+      <div className="border-t border-[#60804F]/30 py-5 px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 text-center sm:text-left">
+        <span>© {new Date().getFullYear()} Pipo&Co — Todos los derechos reservados</span>
+        <span>Desarrollado por Pedro Flores</span>
       </div>
 
     </footer>

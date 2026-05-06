@@ -49,7 +49,7 @@ export default function Features() {
 
   return (
     <section className='bg-white'>
-      <div className="relative bg-[url('/pipoca.jpg')] bg-cover bg-top py-20 md:py-50 mx-4 md:mx-10 rounded-2xl">
+      <div className="relative bg-[url('/osito.jpg')] bg-cover bg-center py-20 md:py-50 mx-4 md:mx-10 rounded-2xl">
         <div className="absolute inset-0 bg-black/50 rounded-2xl" />
         <div className="relative max-w-6xl mx-auto px-6">
 

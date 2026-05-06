@@ -12,8 +12,12 @@ import CheckoutScreen from './pages/Checkout/Checkout.jsx'
 import ConfirmacionScreen from './pages/Checkout/Confirmacion.jsx'
 import AdminScreen from './pages/Admin/Admin.jsx'
 import MiCuentaScreen from './pages/MiCuenta/MiCuenta.jsx'
-import { Routes, Route, useLocation } from "react-router-dom"
+import FaqsScreen from './pages/Faqs/Faqs.jsx'
+import NotFoundScreen from './pages/NotFound/NotFound.jsx'
+import ErrorScreen from './pages/Error/Error.jsx'
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -27,6 +31,21 @@ export default function App() {
   const [carrito, setCarrito] = useState([])
   const [carritoOpen, setCarritoOpen] = useState(false)
   const [toastVisible, setToastVisible] = useState(false)
+  const navigate = useNavigate()
+
+  // Interceptor global de axios — redirige a /error en errores 500
+  useEffect(() => {
+    const interceptor = axios.interceptors.response.use(
+      res => res,
+      err => {
+        if (err.response?.status === 500) {
+          navigate('/error')
+        }
+        return Promise.reject(err)
+      }
+    )
+    return () => axios.interceptors.response.eject(interceptor)
+  }, [navigate])
 
   const agregarAlCarrito = (producto) => {
     setCarrito(prev => {
@@ -58,6 +77,9 @@ export default function App() {
         <Route path="/checkout/confirmacion" element={<ConfirmacionScreen />} />
         <Route path="/admin" element={<AdminScreen />} />
         <Route path="/mi-cuenta" element={<MiCuentaScreen />} />
+        <Route path="/faqs" element={<FaqsScreen />} />
+        <Route path="/error" element={<ErrorScreen />} />
+        <Route path="*" element={<NotFoundScreen />} />
       </Routes>
       <Footer />
       <CarritoSidebar

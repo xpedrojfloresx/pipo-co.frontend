@@ -96,7 +96,7 @@ const BarraNav = ({ onAbrirCarrito, carrito }) => {
           </button>
 
           {/* Avatar */}
-          <div className="shrink-0 relative" ref={userRef}>
+          <div className="shrink-0 relative hidden md:block" ref={userRef}>
             <button
               onClick={() => setUserOpen(!userOpen)}
               className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#60804F] focus:ring-[#60804F]"
