@@ -16,7 +16,7 @@ button, a, [role="button"] {
 
 @media (max-width: 768px) {
     [id] {
-        scroll-margin-top: 400px;
+        scroll-margin-top: 120px;
     }
 }
 
