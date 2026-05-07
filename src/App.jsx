@@ -30,8 +30,13 @@ function ScrollToTop() {
 export default function App() {
   const [carrito, setCarrito] = useState([])
   const [carritoOpen, setCarritoOpen] = useState(false)
-  const [toastVisible, setToastVisible] = useState(false)
+  const [toast, setToast] = useState({ visible: false, mensaje: '', tipo: 'exito' })
   const navigate = useNavigate()
+
+  const mostrarToast = (mensaje, tipo = 'exito') => {
+    setToast({ visible: true, mensaje, tipo })
+    setTimeout(() => setToast(t => ({ ...t, visible: false })), 2500)
+  }
 
   // Interceptor global de axios — redirige a /error en errores 500
   useEffect(() => {
@@ -48,6 +53,18 @@ export default function App() {
   }, [navigate])
 
   const agregarAlCarrito = (producto) => {
+    const stock = producto.stockDisponible ?? Infinity
+    const itemEnCarrito = carrito.find(item => item._id === producto._id)
+    const cantidadActual = itemEnCarrito ? itemEnCarrito.cantidad : 0
+
+    if (cantidadActual >= stock) {
+      const msg = stock === 1
+        ? 'Solo nos queda 1 unidad disponible'
+        : `Solo nos quedan ${stock} unidades disponibles`
+      mostrarToast(msg, 'advertencia')
+      return
+    }
+
     setCarrito(prev => {
       const existe = prev.find(item => item._id === producto._id)
       if (existe) {
@@ -57,8 +74,7 @@ export default function App() {
       }
       return [...prev, { ...producto, cantidad: 1 }]
     })
-    setToastVisible(true)
-    setTimeout(() => setToastVisible(false), 2500)
+    mostrarToast('Producto agregado al carrito')
   }
 
   return (
@@ -88,7 +104,7 @@ export default function App() {
         carrito={carrito}
         setCarrito={setCarrito}
       />
-      <Toast visible={toastVisible} />
+      <Toast visible={toast.visible} mensaje={toast.mensaje} tipo={toast.tipo} />
     </>
   )
 }

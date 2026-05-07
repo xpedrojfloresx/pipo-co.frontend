@@ -18,7 +18,13 @@ const CarritoSidebar = ({ isOpen, onClose, carrito, setCarrito }) => {
   const cambiarCantidad = (id, delta) => {
     setCarrito(prev =>
       prev
-        .map(item => item._id === id ? { ...item, cantidad: item.cantidad + delta } : item)
+        .map(item => {
+          if (item._id !== id) return item
+          const stock = item.stockDisponible ?? Infinity
+          const nuevaCantidad = item.cantidad + delta
+          if (nuevaCantidad > stock) return item
+          return { ...item, cantidad: nuevaCantidad }
+        })
         .filter(item => item.cantidad > 0)
     )
   }
@@ -60,7 +66,8 @@ const CarritoSidebar = ({ isOpen, onClose, carrito, setCarrito }) => {
           ) : (
             <ul className="space-y-4">
               {carrito.map(item => (
-                <li key={item._id} className="flex items-center gap-3">
+                <li key={item._id} className="flex flex-col gap-1.5">
+                  <div className="flex items-center gap-3">
                   <img src={item.img} alt={item.name} className="w-14 h-14 object-cover rounded-lg" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-slate-700 truncate">{item.name}</p>
@@ -74,9 +81,16 @@ const CarritoSidebar = ({ isOpen, onClose, carrito, setCarrito }) => {
                     <span className="w-5 text-center text-sm font-semibold text-slate-700">{item.cantidad}</span>
                     <button
                       onClick={() => cambiarCantidad(item._id, 1)}
-                      className="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-sm font-bold flex items-center justify-center transition-colors"
+                      disabled={item.cantidad >= (item.stockDisponible ?? Infinity)}
+                      className="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-sm font-bold flex items-center justify-center transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                     >+</button>
                   </div>
+                  </div>
+                  {item.cantidad >= (item.stockDisponible ?? Infinity) && (
+                    <p className="text-xs text-amber-600 font-medium pl-1">
+                      ⚠ Alcanzaste el stock disponible
+                    </p>
+                  )}
                 </li>
               ))}
             </ul>
