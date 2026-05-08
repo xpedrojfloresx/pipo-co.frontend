@@ -64,7 +64,7 @@ export default function Footer() {
               className="text-[#8fbc6a] hover:text-white transition-colors">
               <TikTokIcon />
             </a>
-            <a href="https://wa.me/5493512345678" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/5493517707999" target="_blank" rel="noopener noreferrer"
               className="text-[#8fbc6a] hover:text-white transition-colors">
               <WhatsAppIcon />
             </a>
