@@ -2,6 +2,8 @@
 
 React storefront for the Pipo & Co pet food e-commerce platform. Built with Vite, Tailwind CSS, and React Router.
 
+> Demo en vivo → [Ver Página web](https://www.pipoandco.com.ar/) 
+
 ## Tech Stack
 
 | Layer | Technology |
